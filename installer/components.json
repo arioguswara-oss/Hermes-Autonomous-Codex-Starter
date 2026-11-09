@@ -38,7 +38,20 @@
       "source": "SANRO private Supervisor Draft PR #72; permission/security review required",
       "distribution": "example_profile_only",
       "status": "IMPLEMENTED_CANDIDATE_EXTERNAL",
-      "requiredForFullRuntime": true
+      "requiredForFullRuntime": true,
+      "integrationContract": {
+        "id": "sanro.golden-worker.node.v2",
+        "status": "PLANNED_NOT_CONNECTED",
+        "privateCandidate": "Sanro-AI-Supervisor Draft PR #72",
+        "candidateDistribution": "not_bundled",
+        "inputSchema": "reviewed_owner_pinned_manifest",
+        "outputSchema": "sanitized_development_evidence",
+        "supportedProfile": "node",
+        "requireOwnerApproval": true,
+        "requirePinnedArtifactHash": true,
+        "autoEnableExistingWorkers": false,
+        "productionMutation": false
+      }
     },
     {
       "id": "golden-worker-android",
