@@ -56,7 +56,7 @@ def _invoke(args: Sequence[str], cwd: Path, *, timeout: int = 20,
         # Deliberately never expose stderr/stdout: can contain secrets.
         raise RunBlocked("LOCAL_COMMAND_FAILED")
     # Do not use .strip(): it can corrupt git status leading columns.
-    return result.stdout.rstrip("\\r\\n")
+    return result.stdout.rstrip(chr(10) + chr(13))
 
 
 def _silent(args: Sequence[str], cwd: Path, *, timeout: int,
