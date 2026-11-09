@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "package": "SANRO Hermes Coding Toolkit",
+  "maturity": "public integration scaffold; not an autonomous installer",
+  "releaseGate": "Owner review and manual activation only",
+  "components": [
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent (Nous Research)",
+      "kind": "external_dependency",
+      "source": "https://github.com/NousResearch/hermes-agent",
+      "distribution": "not_bundled",
+      "status": "EXTERNAL",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "codex-cli",
+      "name": "Codex CLI",
+      "kind": "external_dependency",
+      "source": "official OpenAI Codex CLI documentation",
+      "distribution": "not_bundled",
+      "status": "EXTERNAL",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "sanro-agent-bridge",
+      "name": "SANRO Agent Bridge",
+      "kind": "sanro_adapter",
+      "source": "SANRO internal reference; generic public adapter pending",
+      "distribution": "not_bundled",
+      "status": "PLANNED",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "golden-worker-node",
+      "name": "Golden Worker Installer — Node.js profile",
+      "kind": "sanro_adapter",
+      "source": "SANRO private Supervisor Draft PR #72; permission/security review required",
+      "distribution": "example_profile_only",
+      "status": "IMPLEMENTED_CANDIDATE_EXTERNAL",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "golden-worker-android",
+      "name": "Golden Worker Installer — Android profile",
+      "kind": "sanro_adapter",
+      "source": "not available; Android SDK/Gradle support must be developed independently",
+      "distribution": "not_bundled",
+      "status": "PLANNED",
+      "requiredForFullRuntime": false
+    },
+    {
+      "id": "sanro-local-ci",
+      "name": "SANRO Local CI",
+      "kind": "sanro_adapter",
+      "source": "SANRO Dev Toolkit/Supervisor; runtime integration not proven here",
+      "distribution": "not_bundled",
+      "status": "EXTERNAL_UNVERIFIED",
+      "requiredForFullRuntime": false
+    },
+    {
+      "id": "github-transport",
+      "name": "GitHub Bridge and Draft PR integration",
+      "kind": "platform_service",
+      "source": "GitHub with scoped access; not an unrestricted SSH MCP",
+      "distribution": "not_bundled",
+      "status": "EXTERNAL",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "scheduler-and-queue",
+      "name": "Queue, scheduler, audit ledger and worker isolation",
+      "kind": "sanro_adapter",
+      "source": "internal SANRO reference; generic public integration pending",
+      "distribution": "not_bundled",
+      "status": "PLANNED",
+      "requiredForFullRuntime": true
+    },
+    {
+      "id": "github-actions",
+      "name": "Standard GitHub-hosted Actions CI",
+      "kind": "ci_option",
+      "source": "GitHub Actions",
+      "distribution": "configuration_external",
+      "status": "OPTIONAL",
+      "requiredForFullRuntime": false
+    }
+  ],
+  "ciDefaults": {
+    "public": "github-actions-standard",
+    "private": "sanro-local-ci-if-installed-verified",
+    "privateFallback": "explicit-owner-approval-only"
+  },
+  "activation": {
+    "autoMerge": false,
+    "productionMutation": false,
+    "autoServiceEnable": false,
+    "autoPaidSubscription": false
+  }
+}
