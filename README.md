@@ -32,6 +32,12 @@ Codex CLI can be used with an eligible **ChatGPT sign-in**, with **no separate O
 
 The successful SANRO experiments used a **Contabo VPS** with Linux, Git/GitHub CLI, Python, Node/Codex CLI, Bubblewrap and systemd. See [Contabo VPS and software checklist](docs/VPS_CONTABO.md), plus [costs and official references](docs/COSTS.md). **No VPS is required for the mock demo.** Do not share ChatGPT credentials or circumvent provider quotas.
 
+## ChatGPT ↔ Hermes uses SANRO Agent Bridge (not direct SSH)
+
+The SANRO reference workflow **does not give ChatGPT direct SSH access to the Hermes VPS**. Task and status messages travel through a narrowly authorized **SANRO Agent Bridge**, historically using GitHub as the transport. Hermes dispatches isolated **Codex-CLI** workers, and reviewed code/test evidence and Draft PRs return through GitHub.
+
+A separately priced SSH-based MCP integration is **not required** by that reference architecture; GitHub, VPS, model subscriptions and quotas may still incur costs. **The original live Bridge is not shipped or verified in this public starter.** See [Agent Bridge architecture and boundaries](docs/AGENT_BRIDGE.md).
+
 ## CI routing: public vs private repositories
 
 The toolkit's future autonomous workflow must choose a **cost-aware CI execution path** instead of assuming GitHub-hosted Actions is free for every project.
