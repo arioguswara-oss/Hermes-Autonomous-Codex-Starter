@@ -37,6 +37,10 @@ A real adapter needs to verify authenticated GitHub issue authorship, protect mo
 
 SANRO's internal development workers previously generated bounded POS Public coding Draft PRs and an autonomous Superadmin PR. These are **case studies**, not evidence this public code is already wired up. See [case studies](CASE_STUDIES.md).
 
+## Hosting example: Contabo VPS
+
+Ario Guswara used a **Contabo VPS** for the original SANRO Hermes development setup. See [Contabo VPS sizing and software checklist](VPS_CONTABO.md). Contabo is an economical option in the developer's experience—not a universal cheapest-provider claim. The public v0.1 offline demo needs no VPS.
+
 ## Low-cost principle
 
 Eligible Codex CLI users can sign in with ChatGPT instead of separate billable OpenAI API keys. Usage remains limited by plan and model. A lightweight model such as GPT-6 Luna may fit routine changes. Never promise unlimited use or bypass service terms. Claude, 9router and local-model integrations are optional community proposals, not installed adapters.
