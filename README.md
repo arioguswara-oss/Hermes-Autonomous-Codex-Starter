@@ -32,6 +32,20 @@ Codex CLI can be used with an eligible **ChatGPT sign-in**, with **no separate O
 
 The successful SANRO experiments used a **Contabo VPS** with Linux, Git/GitHub CLI, Python, Node/Codex CLI, Bubblewrap and systemd. See [Contabo VPS and software checklist](docs/VPS_CONTABO.md), plus [costs and official references](docs/COSTS.md). **No VPS is required for the mock demo.** Do not share ChatGPT credentials or circumvent provider quotas.
 
+## CI routing: public vs private repositories
+
+The toolkit's future autonomous workflow must choose a **cost-aware CI execution path** instead of assuming GitHub-hosted Actions is free for every project.
+
+| Repository | Preferred execution path |
+| --- | --- |
+| **Public** | Standard **GitHub-hosted GitHub Actions** (free for standard runners under current terms) |
+| **Private** | Separately installed, isolated **SANRO Local CI** on the developer's host/VPS |
+| **Private fallback** | Explicitly approved GitHub Actions self-hosted runner or GitHub-hosted Actions with cost controls |
+
+**These are architecture defaults, not working automatic routing in this starter.** SANRO Local CI is **not bundled here**; private-repo CI still requires an installed and verified executor. Public jobs may have additional service/storage limits; VPS compute is not free. GitHub remains the source/Issue/Draft PR service regardless of CI path.
+
+Read [CI strategy, security boundaries and acceptance criteria](docs/CI_STRATEGY.md), [cost model](docs/COSTS.md) and [GitHub's official billing documentation](https://docs.github.com/en/billing/concepts/product-billing/github-actions). **Never change a project's visibility or enable billable runners without Owner approval.**
+
 ## Quick start (safe, local)
 
 Requirements: Python 3.11+, Git (for future adapters), optionally Codex CLI and GitHub CLI. The demonstration below needs **no AI login, API key, server, or GitHub write access**.
