@@ -6,7 +6,7 @@
 
 - Codex CLI can use eligible **ChatGPT sign-in** rather than an **OpenAI API key**. Codex availability and quotas vary by plan, model and account; Free and Go are included in official ChatGPT Codex availability, while some Cloud features have different plan requirements.
 - Even without a separate API bill, inference consumes the plan's **usage allowance**, measured in model usage/tokens. **No plan guarantees infinite autonomous executions.**
-- A rented VPS, development machine power, disk, network, optional GitHub tier or third-party model/gateway **may cost money**.
+- A rented VPS, development machine power, disk, network, optional GitHub tier or third-party model/gateway **may cost money**. SANRO's original Hermes VPS is hosted at **Contabo**, which Ario Guswara selected as an economical option. See [VPS and component checklist](VPS_CONTABO.md); confirm current price/term/region on https://contabo.com/en-us/pricing/ rather than assuming a fixed price.
 - Other providers such as Claude or 9router have **separate terms, account models, authentication and possible usage fees**. Their adapters are not part of v0.1.
 
 ## GPT-6 Luna: contributor/user observation
