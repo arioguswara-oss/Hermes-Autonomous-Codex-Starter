@@ -121,7 +121,7 @@ class RunnerTests(TestCase):
         self.assertEqual(cmd("git", "status", "--porcelain", cwd=self.checkout), "")
         # No second execution of the same task ID.
         with mock.patch("sanro_hermes.runner.shutil.which", return_value="/fake/codex"):
-            with self.assertRaises(FileExistsError):
+            with self.assertRaisesRegex(RunBlocked, "LOCAL_BRANCH_ALREADY_EXISTS"):
                 self.run_task(execute=True, isolated=True)
 
     def test_codex_extra_file_is_blocked(self):
