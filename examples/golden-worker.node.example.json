@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "profile": "node-backend",
+  "project": "REPLACE_PROJECT_NAME",
+  "repository": "REPLACE_OWNER/REPLACE_PRIVATE_OR_PUBLIC_REPO",
+  "baseBranch": "main",
+  "expectedHead": "0000000000000000000000000000000000000000",
+  "executorCandidate": "REVIEWED_EXTERNAL_EXECUTOR_NOT_INCLUDED",
+  "workerIdentity": "DEDICATED_UNPRIVILEGED_IDENTITY",
+  "sandbox": "REQUIRED_EXTERNAL_ISOLATION",
+  "serviceActivation": false,
+  "productionMutation": false,
+  "githubOutput": "DRAFT_PR_ONLY",
+  "status": "TEMPLATE_NOT_INSTALLABLE",
+  "interfaceId": "sanro.golden-worker.node.v2",
+  "sourcePath": "backend/src/REPLACE_APPROVED_FILE.js",
+  "executorBlob": "0000000000000000000000000000000000000000",
+  "ownerApproval": "CODING_TEST_COMMIT_DRAFT_ONLY",
+  "reviewedManifestSha256": "REPLACE_WITH_APPROVED_SHA256_NOT_SELF_CALCULATED",
+  "ciMode": "AUTO_FROM_AUTHENTICATED_GITHUB_VISIBILITY_NOT_IMPLEMENTED",
+  "integrationStatus": "PLANNED_NOT_CONNECTED"
+}
