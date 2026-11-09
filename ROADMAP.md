@@ -5,7 +5,7 @@
 | Milestone | Status | Deliverable / acceptance |
 | --- | --- | --- |
 | v0.1 — Public documentation and offline starter | IMPLEMENTED IN PR | Strict task manifest, mock provider, Codex preview only, tests, guides and attribution |
-| v0.2 — Real Codex one-shot executor | PLANNED | Dedicated isolated workspace; actual CLI task modifies allowlisted file, tests pass, dev commit and Draft PR produced |
+| v0.2 — Real Codex one-shot executor | IMPLEMENTED CANDIDATE — Draft PR #2; offline tests only | Opt-in CLI command and Draft PR path implemented; real model call and real GitHub publication from public code remain UNVERIFIED |
 | v0.3 — GitHub autonomous task consumer | PLANNED | Verified Owner-authored Issue → automatic claim → Codex → tests → dev Draft PR with no manual Codex run |
 | v0.4 — Per-project scheduler and resource arbitration | PLANNED | Multiple workers in separate Linux identities, queue precedence, safe recovery, low-memory operation |
 | v0.5 — Hermes Agent upstream integration | PROPOSED | Tested bridge to real Nous Research Hermes Agent, following upstream APIs and license |
