@@ -78,6 +78,10 @@ class BridgeAndCiContractTest(unittest.TestCase):
         bad = self.task(mode="deterministic-ci", goal="run SANRO CI",
                         ciCommand="deploy")
         self.assertEqual(bad.returncode, 2)
+        release_check = self.task(mode="deterministic-ci",
+                                  goal="run SANRO release-check",
+                                  ciCommand="release-check")
+        self.assertEqual(release_check.returncode, 0, release_check.stderr)
 
     def test_ci_envelope_sanitized(self):
         result = self.local_ci()
