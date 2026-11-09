@@ -119,7 +119,7 @@ def prepare(output: str, ack_nonlive: bool) -> dict:
         lock = {
             "schemaVersion": 1,
             "package": info["package"],
-            "status": "STAGED_FOR_OWNER_REVIEW",
+            "status": "PREPARED_NONLIVE",
             "active": False,
             "productionMutation": False,
             "externalDependenciesInstalled": False,
@@ -152,7 +152,7 @@ def verify(raw: str) -> dict:
         ok = path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(target) and sha256(path) == checksum
         checks.append({"file": rel, "match": bool(ok)})
     success = all(c["match"] for c in checks)
-    return {"status": "STAGED_FOR_OWNER_REVIEW" if success else "BLOCKED",
+    return {"status": "PREPARED_NONLIVE" if success else "BLOCKED",
             "verified": success, "fileCount": len(checks),
             "failed": [c["file"] for c in checks if not c["match"]],
             "active": False, "productionMutation": False}
