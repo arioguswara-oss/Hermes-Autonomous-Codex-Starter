@@ -61,6 +61,25 @@ class UnifiedInstallerTest(unittest.TestCase):
             self.assertEqual(payload["status"], "BLOCKED")
             self.assertIn("docs/GOLDEN_WORKER.md", payload["failed"])
 
+
+    def test_golden_worker_integration_is_explicitly_planned_and_nonlive(self):
+        info = json.loads((SCRIPT.parents[1] / "installer" / "components.json").read_text())
+        golden = next(x for x in info["components"] if x["id"] == "golden-worker-node")
+        contract = golden["integrationContract"]
+        self.assertEqual(contract["id"], "sanro.golden-worker.node.v2")
+        self.assertEqual(contract["status"], "PLANNED_NOT_CONNECTED")
+        self.assertEqual(contract["candidateDistribution"], "not_bundled")
+        self.assertFalse(contract["autoEnableExistingWorkers"])
+        self.assertFalse(contract["productionMutation"])
+        self.assertTrue(contract["requirePinnedArtifactHash"])
+        self.assertEqual(info["ciDefaults"]["public"], "github-actions-standard")
+        self.assertEqual(info["ciDefaults"]["private"], "sanro-local-ci-if-installed-verified")
+        example = json.loads((SCRIPT.parents[1] / "examples" / "golden-worker.node.example.json").read_text())
+        self.assertEqual(example["interfaceId"], contract["id"])
+        self.assertFalse(example["serviceActivation"])
+        self.assertFalse(example["productionMutation"])
+        self.assertEqual(example["status"], "TEMPLATE_NOT_INSTALLABLE")
+
     def test_relative_path_refused(self):
         proc = command("prepare", "--output", "relative-staging", "--ack-nonlive")
         self.assertNotEqual(proc.returncode, 0)
