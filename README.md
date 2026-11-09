@@ -48,6 +48,12 @@ python3 -m sanro_hermes.cli codex-preview /tmp/sanro-task.json
 
 `demo` uses a mock provider. It does **not** modify the target repository, run Codex, create a GitHub issue or publish a PR.
 
+## v0.2 development candidate (Draft PR #2)
+
+A separate, opt-in **real Codex-CLI one-shot runner** is under review in [Draft PR #2](https://github.com/arioguswara-oss/Hermes-Autonomous-Codex-Starter/pull/2). Unlike the offline mock, `python3 -m sanro_hermes.runner` **can** execute a real Codex model, check a single allowlisted source edit, run a fixed syntax test, and optionally produce a development Draft PR. All real model/GitHub commands are **opt-in** and are **NOT** run by CI; tests mock them.
+
+It requires a **separate non-root, externally isolated user/container**; `--isolated-runtime` is an acknowledgement, not a sandbox. It is **not** an automatic GitHub Issue consumer or timer worker yet. See [bounded Codex guide](docs/ONE_SHOT_CODEX.md). Never run this directly on SANRO production or an unrestricted owner account.
+
 ## Architecture
 
 ```text
