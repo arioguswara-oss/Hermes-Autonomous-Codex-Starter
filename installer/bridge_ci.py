@@ -16,7 +16,7 @@ SHA1 = re.compile(r"[a-f0-9]{40}\Z")
 MUTATION_WORDS = re.compile(
     r"\b(implement|edit|modify|refactor|commit|push|deploy|migrate|"
     r"restart|reconfigure|delete|merge|install|activate|write|chmod|"
-    r"release)\b", re.IGNORECASE
+    r"release\b(?![-\s]?check))\b", re.IGNORECASE
 )
 CI_COMMANDS = {"lint", "build", "verify", "release-check", "ci"}
 
