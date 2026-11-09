@@ -145,10 +145,17 @@ class RunnerTests(TestCase):
         # Fake Codex exits with a fixed error; test and GitHub publish are never called.
         def fail_codex(args, cwd, *, timeout, env):
             raise RunBlocked("EXECUTOR_EXIT_NONZERO")
+        import sanro_hermes.runner as runner
+        actual_invoke = runner._invoke
+        def no_network(args, cwd, *, timeout=20, env=None):
+            if tuple(args[:3]) == ("git", "ls-remote", "--heads"):
+                return ""
+            return actual_invoke(args, cwd, timeout=timeout, env=env)
         with mock.patch("sanro_hermes.runner.shutil.which", return_value="/fake/codex"):
-            with mock.patch("sanro_hermes.runner._silent", side_effect=fail_codex):
-                with self.assertRaisesRegex(RunBlocked, "EXECUTOR_EXIT_NONZERO"):
-                    self.run_task(execute=True, publish=True, isolated=True)
+            with mock.patch("sanro_hermes.runner._invoke", side_effect=no_network):
+                with mock.patch("sanro_hermes.runner._silent", side_effect=fail_codex):
+                    with self.assertRaisesRegex(RunBlocked, "EXECUTOR_EXIT_NONZERO"):
+                        self.run_task(execute=True, publish=True, isolated=True)
         self.assertEqual(list(self.jobs.iterdir()), [])
 
     def test_git_publish_sequence_is_mocked_and_draft_only(self):
