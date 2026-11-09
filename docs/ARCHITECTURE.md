@@ -31,6 +31,12 @@
 
 *Claude/router/local are **extension proposals**. v0.1 currently implements a mock adapter and a Codex CLI **preview**, not an executing provider.*
 
+## Communication control plane — SANRO Agent Bridge
+
+**ChatGPT does not directly SSH into Hermes.** The SANRO reference design uses GitHub-backed task/status transport and an authorized **SANRO Agent Bridge** on the VPS to validate and dispatch work. Hermes coordinates workers; **Codex-CLI** performs coding; CI checks may run separately. A bridge ACK is not evidence of a successful coding task.
+
+**The Bridge is not bundled in this starter.** See [Agent Bridge architecture](AGENT_BRIDGE.md).
+
 ## CI selection boundary (planned)
 
 Build/test execution is a selectable **per-project CI adapter**, independent of coding-provider selection. Public projects should normally use standard GitHub-hosted Actions; private projects can use separately installed SANRO Local CI on a genuinely isolated host. GitHub self-hosted Actions runners are a different option. All CI paths must report commit SHA, test evidence, resource use and blocked/billable fallback conditions. **This is not implemented by the v0.1 mock or the v0.2 one-shot candidate.** See [CI strategy](CI_STRATEGY.md).
