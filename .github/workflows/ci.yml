@@ -21,6 +21,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Compile source
-        run: python -m compileall -q sanro_hermes tests
+        run: python -m compileall -q sanro_hermes installer tests
       - name: Offline tests (no credentials)
         run: python -m unittest discover -s tests -v
