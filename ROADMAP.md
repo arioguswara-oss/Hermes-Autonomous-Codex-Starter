@@ -8,6 +8,7 @@
 | v0.2 — Real Codex one-shot executor | IMPLEMENTED CANDIDATE — Draft PR #2; offline tests only | Opt-in CLI command and Draft PR path implemented; real model call and real GitHub publication from public code remain UNVERIFIED |
 | v0.3 — GitHub autonomous task consumer | PLANNED | Verified Owner-authored Issue → automatic claim → Codex → tests → dev Draft PR with no manual Codex run |
 | v0.4 — Per-project scheduler and resource arbitration | PLANNED | Multiple workers in separate Linux identities, queue precedence, safe recovery, low-memory operation |
+| CI routing — public vs private | PLANNED — [specification only](docs/CI_STRATEGY.md) | Authenticated repository visibility → standard GitHub Actions for public / verified SANRO Local CI for private; explicit approved fallback; reliable evidence without production permissions |
 | v0.5 — Hermes Agent upstream integration | PROPOSED | Tested bridge to real Nous Research Hermes Agent, following upstream APIs and license |
 | Community adapter: Claude Code | PROPOSED | Optional provider, documented authentication, cost, scope gates and end-to-end tests |
 | Community adapter: 9router | PROPOSED | Optional gateway connector, independent configuration, provider terms/cost and tests |
