@@ -93,6 +93,12 @@ class RunnerTests(TestCase):
             self.run_task(execute=True)
         self.assertEqual(list(self.state.iterdir()), [])
 
+    def test_running_real_codex_as_root_is_forbidden(self):
+        with mock.patch("sanro_hermes.runner.os.geteuid", return_value=0):
+            with self.assertRaisesRegex(RunBlocked, "ROOT_EXECUTION_FORBIDDEN"):
+                self.run_task(execute=True, isolated=True)
+        self.assertEqual(list(self.state.iterdir()), [])
+
     def test_syntax_test_profiles(self):
         self.assertEqual(_test_argv("node-check", "src/app.js")[:2],
                          ("node", "--check"))
