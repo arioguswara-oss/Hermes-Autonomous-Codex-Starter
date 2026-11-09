@@ -16,6 +16,7 @@ import shutil
 import sys
 
 from integration import golden_plan, preflight, select_ci
+from bridge_ci import bridge_plan, ci_report
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "installer" / "components.json"
@@ -30,6 +31,7 @@ STAGED_FILES = (
     "docs/ID.md",
     "installer/components.json",
     "installer/integration.py",
+    "installer/bridge_ci.py",
     "installer/sanro_install.py",
     "docs/INTEGRATION.md",
     "examples/golden-worker.node.example.json",
@@ -175,6 +177,12 @@ def main(argv=None) -> int:
     golden.add_argument("--installer-sha256", required=True)
     ci = sub.add_parser("ci-plan", help="Read authenticated GitHub visibility; never start CI")
     ci.add_argument("--repo", required=True)
+    bridge = sub.add_parser("bridge-plan", help="Validate pinned read-only bridge task; no dispatch")
+    bridge.add_argument("--task", required=True)
+    bridge.add_argument("--task-sha256", required=True)
+    report = sub.add_parser("ci-report", help="Validate pinned Local CI report without raw logs")
+    report.add_argument("--report", required=True)
+    report.add_argument("--report-sha256", required=True)
     p = sub.add_parser("prepare", help="Copy public-safe examples/docs to new non-live directory")
     p.add_argument("--output", required=True, help="Absolute path to NEW non-live staging directory")
     p.add_argument("--ack-nonlive", action="store_true")
@@ -191,6 +199,10 @@ def main(argv=None) -> int:
                                  args.external_installer, args.installer_sha256)
         elif args.action == "ci-plan":
             result = select_ci(args.repo)
+        elif args.action == "bridge-plan":
+            result = bridge_plan(args.task, args.task_sha256)
+        elif args.action == "ci-report":
+            result = ci_report(args.report, args.report_sha256)
         elif args.action == "prepare":
             result = prepare(args.output, args.ack_nonlive)
         else:
