@@ -31,6 +31,10 @@
 
 *Claude/router/local are **extension proposals**. v0.1 currently implements a mock adapter and a Codex CLI **preview**, not an executing provider.*
 
+## CI selection boundary (planned)
+
+Build/test execution is a selectable **per-project CI adapter**, independent of coding-provider selection. Public projects should normally use standard GitHub-hosted Actions; private projects can use separately installed SANRO Local CI on a genuinely isolated host. GitHub self-hosted Actions runners are a different option. All CI paths must report commit SHA, test evidence, resource use and blocked/billable fallback conditions. **This is not implemented by the v0.1 mock or the v0.2 one-shot candidate.** See [CI strategy](CI_STRATEGY.md).
+
 ## Core interfaces
 
 **Manifest:** exact fields `schema`, `taskId`, `repository`, `expectedHead`, `sourcePath`, `goal`, `expiresAt`, `owner`, `ownerApproval`. The parser rejects extra fields, expired tasks, path traversal and unauthorized operations. An executing worker must separately **verify the remote GitHub Issue author's identity**, immutable base commit and non-symlink file path.
