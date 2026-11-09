@@ -9,6 +9,10 @@
 - A rented VPS, development machine power, disk, network, optional GitHub tier or third-party model/gateway **may cost money**. SANRO's original Hermes VPS is hosted at **Contabo**, which Ario Guswara selected as an economical option. See [VPS and component checklist](VPS_CONTABO.md); confirm current price/term/region on https://contabo.com/en-us/pricing/ rather than assuming a fixed price.
 - Other providers such as Claude or 9router have **separate terms, account models, authentication and possible usage fees**. Their adapters are not part of v0.1.
 
+## Avoiding a dedicated paid SSH MCP dependency
+
+SANRO's reference workflow uses a narrowly scoped GitHub-backed **Agent Bridge** between ChatGPT supervision and the VPS. It does not require a separately paid SSH MCP integration, nor does it imply that all SSH MCP implementations charge fees. GitHub, VPS, plan usage, private CI compute and operations can still cost money. Do not expose a general-purpose VPS shell to an AI chat merely to reduce integration friction. See [Agent Bridge architecture](AGENT_BRIDGE.md).
+
 ## GitHub Actions vs independent SANRO Local CI
 
 Repository visibility affects operating costs:
