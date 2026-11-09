@@ -38,7 +38,7 @@ Baca [arsitektur](ARCHITECTURE.md), [operasional](OPERATIONS.md), [keamanan](../
 
 ## Paket dan biaya
 
-Codex-CLI dapat login menggunakan akun ChatGPT sendiri yang memenuhi syarat, tanpa kunci API berbayar terpisah; penggunaan tetap dibatasi oleh paket/model. Konfigurasi model ringan seperti **GPT-6 Luna** dapat menghemat jatah pada tugas sederhana, tetapi hasil dan kuota berbeda per pengguna. Lihat [catatan biaya](COSTS.md). Biaya VPS/listrik dan provider lain tetap mungkin ada.
+Codex-CLI dapat login menggunakan akun ChatGPT sendiri yang memenuhi syarat, tanpa kunci API berbayar terpisah; penggunaan tetap dibatasi oleh paket/model. Konfigurasi model ringan seperti **GPT-6 Luna** dapat menghemat jatah pada tugas sederhana, tetapi hasil dan kuota berbeda per pengguna. Lihat [catatan biaya](COSTS.md) dan [contoh VPS Contabo serta daftar kebutuhan software](VPS_CONTABO.md). Rio menggunakan Contabo pada implementasi SANRO karena menurut pengalamannya ekonomis, bukan berarti selalu termurah. Biaya VPS/listrik dan provider lain tetap mungkin ada.
 
 ## Untuk komunitas
 
