@@ -12,6 +12,8 @@ One entrypoint, `installer/sanro_install.py`, now exposes the following **non-mu
 | `preflight` | Inspect PATH for Git, GitHub CLI, Codex, Node/npm, Bubblewrap | Credentials, correct Linux identity, sandbox or sufficient VPS resources |
 | `golden-plan` | Verify SHA-256 pinned Node Golden Worker V2 manifest **and separate external installer candidate**, validate exact private V2 manifest contract, print redacted integration plan | Does not execute/install worker, run tests, activate systemd or connect Hermes |
 | `ci-plan` | Call **authenticated `gh api`** for allowlisted GitHub repository metadata and recommend CI policy | Does not start Actions or claim Local CI ready |
+| `bridge-plan` | Validate separately pinned, READ-ONLY SANRO Agent Bridge V1 task envelope | Does not enqueue, execute Codex or write to GitHub |
+| `ci-report` | Parse separately pinned Local CI V1 JSON result into **redacted** summary | Does not attest runner identity, run tests or prove the job was executed by trusted infrastructure |
 | `prepare` | Copy only public-allowlisted docs/adapter to a NEW non-live directory, record SHA-256 checksums | Not VPS/hosting STAGED or installed |
 | `verify` | Verify the prepared copy's file hashes without running code | Not a runtime proof |
 
