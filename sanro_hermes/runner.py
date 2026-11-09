@@ -55,7 +55,8 @@ def _invoke(args: Sequence[str], cwd: Path, *, timeout: int = 20,
     if result.returncode:
         # Deliberately never expose stderr/stdout: can contain secrets.
         raise RunBlocked("LOCAL_COMMAND_FAILED")
-    return result.stdout.strip()
+    # Do not use .strip(): it can corrupt git status leading columns.
+    return result.stdout.rstrip("\\r\\n")
 
 
 def _silent(args: Sequence[str], cwd: Path, *, timeout: int,
@@ -172,10 +173,13 @@ def _test_argv(profile: str, target: str) -> tuple[str, ...]:
         if not target.endswith((".js", ".cjs", ".mjs")):
             raise RunBlocked("TEST_PROFILE_MISMATCH")
         return ("node", "--check", target)
-    if profile == "python-compile":
+    if profile == "python-ast":
         if not target.endswith(".py"):
             raise RunBlocked("TEST_PROFILE_MISMATCH")
-        return ("python3", "-m", "py_compile", target)
+        # AST parsing validates syntax without generating __pycache__ files.
+        return ("python3", "-c",
+                "import ast,pathlib,sys; ast.parse(pathlib.Path(sys.argv[1]).read_text())",
+                target)
     raise RunBlocked("UNSUPPORTED_TEST_PROFILE")
 
 
@@ -291,7 +295,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--base", default="main")
     parser.add_argument("--state-root", required=True, type=Path)
     parser.add_argument("--job-root", required=True, type=Path)
-    parser.add_argument("--test", choices=("node-check", "python-compile"), required=True)
+    parser.add_argument("--test", choices=("node-check", "python-ast"), required=True)
     parser.add_argument("--timeout", type=int, default=480)
     parser.add_argument("--execute", action="store_true", help="call Codex, requires isolated runtime")
     parser.add_argument("--publish-draft", action="store_true", help="commit, push and Draft PR (requires --execute)")
