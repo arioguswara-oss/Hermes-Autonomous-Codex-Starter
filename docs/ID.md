@@ -40,6 +40,12 @@ Baca [arsitektur](ARCHITECTURE.md), [operasional](OPERATIONS.md), [keamanan](../
 
 Codex-CLI dapat login menggunakan akun ChatGPT sendiri yang memenuhi syarat, tanpa kunci API berbayar terpisah; penggunaan tetap dibatasi oleh paket/model. Konfigurasi model ringan seperti **GPT-6 Luna** dapat menghemat jatah pada tugas sederhana, tetapi hasil dan kuota berbeda per pengguna. Lihat [catatan biaya](COSTS.md) dan [contoh VPS Contabo serta daftar kebutuhan software](VPS_CONTABO.md). Rio menggunakan Contabo pada implementasi SANRO karena menurut pengalamannya ekonomis, bukan berarti selalu termurah. Biaya VPS/listrik dan provider lain tetap mungkin ada.
 
+## Strategi CI repository public dan private
+
+Untuk **repository public**, GitHub Actions dengan runner standar biasanya menjadi pilihan CI termudah karena gratis sesuai ketentuan GitHub saat ini. Untuk **repository private**, gunakan **SANRO Local CI** yang diinstal dan diisolasi pada VPS/host sendiri agar job tersebut tidak menghabiskan alokasi compute GitHub-hosted Actions. Alternatifnya adalah self-hosted GitHub Actions runner atau runner GitHub berbayar dengan batas biaya yang disetujui Owner.
+
+**Status:** Ini baru **rancangan integrasi**, bukan fitur otomatis dalam toolkit public. SANRO Local CI tidak disertakan dan belum diverifikasi untuk starter ini. Biaya VPS, keamanan, batas resource, redaksi log dan kontrol manusia tetap wajib. Baca [spesifikasi CI](CI_STRATEGY.md), [biaya](COSTS.md), dan [aturan billing GitHub](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+
 ## Untuk komunitas
 
 Dukungan Claude Code, 9router dan model lokal diharapkan melalui PR komunitas, **belum dinyatakan tersedia**. SANRO adalah identitas ekosistem Ario Guswara; penulis modul tambahan memperoleh atribusi masing-masing. Kritik dan kontribusi diterima lewat [CONTRIBUTING](../CONTRIBUTING.md).
