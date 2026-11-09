@@ -52,6 +52,14 @@ Untuk **repository public**, GitHub Actions dengan runner standar biasanya menja
 
 **Status:** Ini baru **rancangan integrasi**, bukan fitur otomatis dalam toolkit public. SANRO Local CI tidak disertakan dan belum diverifikasi untuk starter ini. Biaya VPS, keamanan, batas resource, redaksi log dan kontrol manusia tetap wajib. Baca [spesifikasi CI](CI_STRATEGY.md), [biaya](COSTS.md), dan [aturan billing GitHub](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 
+## Satu installer modular SANRO Hermes (kandidat)
+
+Arah pengembangan toolkit: **satu installer** yang menghubungkan Hermes Agent asli (Nous Research), SANRO Agent Bridge, worker autonomous, **Codex-CLI sebagai engine utama**, Golden Worker Installer per profil proyek, serta SANRO Local CI opsional. Ini **bukan Hermes baru**.
+
+Versi yang baru tersedia di public saat ini sebatas **`plan`, `prepare`, dan `verify`** untuk menyiapkan dokumen/config contoh ke direktori non-live baru, mencatat katalog dan checksum. **Belum memasang atau mengaktifkan Hermes, Golden Worker, CI, systemd, atau Bridge.** Golden Worker Node V2 masih kandidat di Draft PR #72 repository Supervisor private. Source tidak disalin ke repo public tanpa audit hak distribusi dan keamanan. Profil Android/Gradle masih direncanakan.
+
+Lihat [rencana Golden Worker dan installer](GOLDEN_WORKER.md) serta [katalog komponen](../installer/components.json). Status `PREPARED_NONLIVE` bukan `STAGED` (hosting) atau `LIVE`.
+
 ## Untuk komunitas
 
 Dukungan Claude Code, 9router dan model lokal diharapkan melalui PR komunitas, **belum dinyatakan tersedia**. SANRO adalah identitas ekosistem Ario Guswara; penulis modul tambahan memperoleh atribusi masing-masing. Kritik dan kontribusi diterima lewat [CONTRIBUTING](../CONTRIBUTING.md).
