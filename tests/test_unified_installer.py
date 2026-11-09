@@ -40,7 +40,7 @@ class UnifiedInstallerTest(unittest.TestCase):
             target = Path(root) / "staging"
             proc = command("prepare", "--output", target, "--ack-nonlive")
             self.assertEqual(proc.returncode, 0, proc.stderr)
-            self.assertEqual(json.loads(proc.stdout)["status"], "STAGED_FOR_OWNER_REVIEW")
+            self.assertEqual(json.loads(proc.stdout)["status"], "PREPARED_NONLIVE")
             self.assertTrue((target / "docs" / "GOLDEN_WORKER.md").is_file())
             self.assertTrue((target / "SANRO_STAGING_LOCK.json").is_file())
             verify = command("verify", "--output", target)
