@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "package": "SANRO Hermes Coding Toolkit",
-  "maturity": "public integration scaffold; not an autonomous installer",
+  "maturity": "offline component contract adapters and non-live staging; autonomous runtime not integrated",
   "releaseGate": "Owner review and manual activation only",
   "components": [
     {
@@ -29,7 +29,9 @@
       "source": "SANRO internal reference; generic public adapter pending",
       "distribution": "not_bundled",
       "status": "PLANNED",
-      "requiredForFullRuntime": true
+      "requiredForFullRuntime": true,
+      "readOnlyEnvelopeValidationImplemented": true,
+      "transportDispatchImplemented": false
     },
     {
       "id": "golden-worker-node",
@@ -50,7 +52,9 @@
         "requireOwnerApproval": true,
         "requirePinnedArtifactHash": true,
         "autoEnableExistingWorkers": false,
-        "productionMutation": false
+        "productionMutation": false,
+        "planningAdapterImplemented": true,
+        "executorInvocationImplemented": false
       }
     },
     {
@@ -69,7 +73,9 @@
       "source": "SANRO Dev Toolkit/Supervisor; runtime integration not proven here",
       "distribution": "not_bundled",
       "status": "EXTERNAL_UNVERIFIED",
-      "requiredForFullRuntime": false
+      "requiredForFullRuntime": false,
+      "redactedReportValidationImplemented": true,
+      "testRunnerIntegrationImplemented": false
     },
     {
       "id": "github-transport",
@@ -78,7 +84,9 @@
       "source": "GitHub with scoped access; not an unrestricted SSH MCP",
       "distribution": "not_bundled",
       "status": "EXTERNAL",
-      "requiredForFullRuntime": true
+      "requiredForFullRuntime": true,
+      "authenticatedRepoVisibilityPlanningImplemented": true,
+      "taskSubmissionImplemented": false
     },
     {
       "id": "scheduler-and-queue",
