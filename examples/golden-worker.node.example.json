@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "profile": "node-backend",
+  "project": "REPLACE_PROJECT_NAME",
+  "repository": "REPLACE_OWNER/REPLACE_PRIVATE_OR_PUBLIC_REPO",
+  "baseBranch": "main",
+  "expectedHead": "0000000000000000000000000000000000000000",
+  "executorCandidate": "REVIEWED_EXTERNAL_EXECUTOR_NOT_INCLUDED",
+  "workerIdentity": "DEDICATED_UNPRIVILEGED_IDENTITY",
+  "sandbox": "REQUIRED_EXTERNAL_ISOLATION",
+  "serviceActivation": false,
+  "productionMutation": false,
+  "githubOutput": "DRAFT_PR_ONLY",
+  "status": "TEMPLATE_NOT_INSTALLABLE"
+}
