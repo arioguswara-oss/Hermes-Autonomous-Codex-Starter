@@ -198,6 +198,8 @@ def run_once(task: Task, *, checkout: Path, state_root: Path,
         return RunResult("PREVIEW_ONLY", task.task_id, branch)
     if not isolated:
         raise RunBlocked("ISOLATED_RUNTIME_CONFIRMATION_REQUIRED")
+    if os.geteuid() == 0:
+        raise RunBlocked("ROOT_EXECUTION_FORBIDDEN")
     if timeout < 30 or timeout > 900:
         raise RunBlocked("INVALID_TIMEOUT")
     if publish and not shutil.which("gh"):
