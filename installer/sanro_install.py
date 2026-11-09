@@ -15,6 +15,8 @@ from pathlib import Path
 import shutil
 import sys
 
+from integration import golden_plan, preflight, select_ci
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "installer" / "components.json"
 STAGED_FILES = (
@@ -27,6 +29,9 @@ STAGED_FILES = (
     "docs/GOLDEN_WORKER.md",
     "docs/ID.md",
     "installer/components.json",
+    "installer/integration.py",
+    "installer/sanro_install.py",
+    "docs/INTEGRATION.md",
     "examples/golden-worker.node.example.json",
 )
 LOCK_NAME = "SANRO_STAGING_LOCK.json"
@@ -162,6 +167,14 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="action", required=True)
     sub.add_parser("plan", help="Read-only component and staging plan")
+    sub.add_parser("preflight", help="Read-only local binary preflight (not runtime proof)")
+    golden = sub.add_parser("golden-plan", help="Inspect pinned Golden Worker Node V2; never run it")
+    golden.add_argument("--manifest", required=True)
+    golden.add_argument("--manifest-sha256", required=True)
+    golden.add_argument("--external-installer", required=True)
+    golden.add_argument("--installer-sha256", required=True)
+    ci = sub.add_parser("ci-plan", help="Read authenticated GitHub visibility; never start CI")
+    ci.add_argument("--repo", required=True)
     p = sub.add_parser("prepare", help="Copy public-safe examples/docs to new non-live directory")
     p.add_argument("--output", required=True, help="Absolute path to NEW non-live staging directory")
     p.add_argument("--ack-nonlive", action="store_true")
@@ -171,12 +184,19 @@ def main(argv=None) -> int:
     try:
         if args.action == "plan":
             result = plan()
+        elif args.action == "preflight":
+            result = preflight()
+        elif args.action == "golden-plan":
+            result = golden_plan(args.manifest, args.manifest_sha256,
+                                 args.external_installer, args.installer_sha256)
+        elif args.action == "ci-plan":
+            result = select_ci(args.repo)
         elif args.action == "prepare":
             result = prepare(args.output, args.ack_nonlive)
         else:
             result = verify(args.output)
         print(json.dumps(result, indent=2, sort_keys=True))
-        return 0 if result.get("verified", True) is True else 2
+        return 2 if result.get("status") == "BLOCKED" or result.get("verified") is False else 0
     except (ValueError, OSError, json.JSONDecodeError) as exc:
         print(json.dumps({"status": "BLOCKED", "reason": str(exc), "productionMutation": False}),
               file=sys.stderr)
