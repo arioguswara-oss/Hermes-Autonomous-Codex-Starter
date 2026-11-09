@@ -60,6 +60,10 @@ Versi yang baru tersedia di public saat ini sebatas **`plan`, `prepare`, dan `ve
 
 Lihat [rencana Golden Worker dan installer](GOLDEN_WORKER.md) serta [katalog komponen](../installer/components.json). Status `PREPARED_NONLIVE` bukan `STAGED` (hosting) atau `LIVE`.
 
+## Pembaruan integrasi P0 (kandidat)
+
+CLI installer memiliki mode **read-only** tambahan: `preflight`, `golden-plan`, `bridge-plan`, `ci-plan` dan `ci-report`. Validasi manifest Golden Worker V2 menggunakan SHA-256 yang sudah direview; tugas Agent Bridge hanya diterima dengan risiko `read-only`, dan laporan Local CI dibaca sebagai ringkasan tanpa log mentah. Tidak satu pun mode ini mengaktifkan worker, menjalankan Codex, melakukan push, atau mengubah production. Pengujian runtime penuh pada VPS masih terpisah. Lihat [kontrak integrasi](INTEGRATION.md).
+
 ## Untuk komunitas
 
 Dukungan Claude Code, 9router dan model lokal diharapkan melalui PR komunitas, **belum dinyatakan tersedia**. SANRO adalah identitas ekosistem Ario Guswara; penulis modul tambahan memperoleh atribusi masing-masing. Kritik dan kontribusi diterima lewat [CONTRIBUTING](../CONTRIBUTING.md).
