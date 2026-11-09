@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "taskId": "demo-documentation-001",
+  "repository": "example-owner/example-repo",
+  "expectedHead": "0000000000000000000000000000000000000000",
+  "sourcePath": "src/example.py",
+  "goal": "Add a short documentation comment without changing runtime behavior.",
+  "expiresAt": "REPLACE_WITH_UTC_TIMESTAMP_WITHIN_NEXT_24_HOURS",
+  "owner": "example-owner",
+  "ownerApproval": "CODING_TEST_COMMIT_DRAFT_ONLY"
+}
