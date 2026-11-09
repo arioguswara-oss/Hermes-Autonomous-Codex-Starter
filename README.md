@@ -52,6 +52,14 @@ The toolkit's future autonomous workflow must choose a **cost-aware CI execution
 
 Read [CI strategy, security boundaries and acceptance criteria](docs/CI_STRATEGY.md), [cost model](docs/COSTS.md) and [GitHub's official billing documentation](https://docs.github.com/en/billing/concepts/product-billing/github-actions). **Never change a project's visibility or enable billable runners without Owner approval.**
 
+## Unified installer initiative — Golden Worker included by profile
+
+**Goal:** one SANRO Hermes Coding Toolkit installer that coordinates **upstream Nous Research Hermes Agent**, Codex-CLI, SANRO Agent Bridge, queue/scheduler, isolated project workers, Golden Worker profiles, and optional SANRO Local CI. **Hermes remains the orchestrator and Codex CLI remains the coding engine.**
+
+**Current public installer milestone is intentionally limited:** `installer/sanro_install.py` supports `plan`, `prepare` and `verify` for a **non-live review package**. It does **not** automatically install, enable or integrate Hermes/Codex/Bridge/Local CI/systemd, and does not create a working autonomous worker. The **Node.js Golden Worker V2** exists as a **separate private candidate** (SANRO AI Supervisor Draft PR #72) pending rights/security/integration review; its source is **not distributed** here. Android Golden Worker is a separate planned profile.
+
+Read [Golden Worker and unified installer roadmap](docs/GOLDEN_WORKER.md) and [component catalog](installer/components.json). Do not interpret `PREPARED_NONLIVE` as `STAGED` on hosting or `LIVE` in production.
+
 ## Quick start (safe, local)
 
 Requirements: Python 3.11+, Git (for future adapters), optionally Codex CLI and GitHub CLI. The demonstration below needs **no AI login, API key, server, or GitHub write access**.
